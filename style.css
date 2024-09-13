@@ -90,14 +90,6 @@ button:hover {
   margin: 20px 0; /* Adds margin around the image */
 }
 
-/* Video Styles */
-video {
-  width: 100%;
-  border-radius: 8px;
-  margin-top: 20px;
-  max-height: 500px; /* Optional: limit the max height */
-}
-
 /* Modal Styles */
 .modal {
   display: none; /* Hidden by default */
@@ -135,9 +127,67 @@ video {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .course h2 {
+    font-size: 1.5em;
+  }
+
+  button {
+    font-size: 0.9em;
+    padding: 10px 15px;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}
+
 @media (max-width: 768px) {
   section#courses {
     flex-direction: column;
     align-items: center;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  .course {
+    max-width: 100%;
+  }
+
+  button {
+    font-size: 0.85em;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .course h2 {
+    font-size: 1.25em;
+  }
+
+  button {
+    font-size: 0.8em;
+    padding: 8px 12px;
+  }
+
+  .modal-content {
+    width: 100%;
   }
 }
