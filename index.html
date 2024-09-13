@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Course Website</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto; /* Center the modal */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+      max-width: 800px; /* Optional: limit the max width */
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Course Section Styling */
+    .course {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      text-align: center; /* Center-aligns text */
+    }
+
+    .course h2 {
+      font-size: 1.5em;
+      color: #007bff;
+    }
+
+    .course p {
+      font-size: 1em;
+      color: #555;
+    }
+
+    .course img {
+      max-width: 80%; /* Set max width of the image */
+      height: auto; /* Maintain aspect ratio */
+      margin: 20px 0; /* Adds margin around the image */
+      border-radius: 10px; /* Optional: add rounded corners */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CONNEXGROW FREE COURSES</h1>
+  </header>
+
+  <section id="courses">
+    <div class="course">
+      <h2>WHAT IS EBITA</h2>
+      <img src="https://media.istockphoto.com/id/471463475/photo/facebook-page-of-justin-bieber-on-rgb-laptop-monitor.jpg?s=2048x2048&w=is&k=20&c=tWnVot0cBjXTU4Ib2kj1tpqiY15Pjrbg05BEUzA3JrQ=" alt="Course Image" class="course-image">
+      <p> HEHE.</p>
+      <button onclick="openVideoModal('https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/dheere%20dheere%20se(1080p).mp4?alt=media&token=ac431609-0825-49d7-b16c-07b2c0d18995')">Watch Video</button>
+    </div>
+
+    <div class="course">
+      <h2> WOMP WOMP</h2>
+      <img src="https://media.istockphoto.com/id/471463475/photo/facebook-page-of-justin-bieber-on-rgb-laptop-monitor.jpg?s=2048x2048&w=is&k=20&c=tWnVot0cBjXTU4Ib2kj1tpqiY15Pjrbg05BEUzA3JrQ=" alt="Course Image" class="course-image">
+      <p>HELLO GUYS.</p>
+      <button onclick="openVideoModal('https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/BB4153EF165B05D6ECA2E965F9B379B3_video_dashinit.mp4?alt=media&token=59899bd4-3db5-40ef-ab06-4637a380cd4c')">Watch Video</button>
+    </div>
+
+    <div class="course">
+      <h2> OOOOO YEAHH</h2>
+      <img src=" https://media.istockphoto.com/id/471463475/photo/facebook-page-of-justin-bieber-on-rgb-laptop-monitor.jpg?s=2048x2048&w=is&k=20&c=tWnVot0cBjXTU4Ib2kj1tpqiY15Pjrbg05BEUzA3JrQ=" alt="Course Image" class="course-image">
+      <p> HELLLO KON.</p>
+      <button onclick="openVideoModal('https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/DF459A171969933F9946EC33663FC8A0_video_dashinit.mp4?alt=media&token=91a2db7e-e62d-4cb1-9902-7619245a9cdd')">Watch Video</button>
+    </div>
+
+  
+  </section>
+
+  <!-- The Modal -->
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <iframe id="modalVideo" width="100%" height="450" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen controlsList="nodownload"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Function to open the modal and play the video
+    function openVideoModal(videoURL) {
+      var modal = document.getElementById("videoModal");
+      var iframe = document.getElementById("modalVideo");
+      var span = document.getElementsByClassName("close")[0];
+
+      iframe.src = videoURL;
+      modal.style.display = "block";
+
+      span.onclick = function() {
+        modal.style.display = "none";
+        iframe.src = ""; // Stop video when closing
+      }
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+          iframe.src = ""; // Stop video when closing
+        }
+      }
+    }
+  </script>
+</body>
+</html>
