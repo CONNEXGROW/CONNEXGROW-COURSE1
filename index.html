@@ -24,7 +24,7 @@
       margin: 5% auto; /* Center the modal */
       padding: 20px;
       border: 1px solid #888;
-      width: 80%; /* Could be more or less, depending on screen size */
+      width: 90%; /* Adjusted for smaller screens */
       max-width: 800px; /* Optional: limit the max width */
     }
 
@@ -42,14 +42,24 @@
       cursor: pointer;
     }
 
-    /* Course Section Styling */
+    /* Responsive Course Section Styling */
+    #courses {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+
     .course {
       background-color: #fff;
       border: 1px solid #ddd;
       padding: 20px;
-      margin: 20px 0;
+      margin: 20px;
       border-radius: 10px;
-      text-align: center; /* Center-aligns text */
+      width: 100%; /* Full width on smaller screens */
+      max-width: 300px; /* Limit max width */
+      text-align: center;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
     }
 
     .course h2 {
@@ -63,10 +73,41 @@
     }
 
     .course img {
-      max-width: 80%; /* Set max width of the image */
+      width: 100%; /* Make image responsive */
       height: auto; /* Maintain aspect ratio */
       margin: 20px 0; /* Adds margin around the image */
       border-radius: 10px; /* Optional: add rounded corners */
+    }
+
+    /* Media Queries for Small Devices */
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 95%; /* Make modal narrower */
+      }
+
+      .course {
+        width: 100%; /* Full width for small screens */
+        max-width: none; /* Remove max-width on smaller screens */
+        margin: 10px 0; /* Reduce margin */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .course h2 {
+        font-size: 1.2em; /* Smaller font size */
+      }
+
+      .course p {
+        font-size: 0.9em; /* Smaller font size */
+      }
+
+      .modal-content {
+        width: 100%; /* Full width on small devices */
+      }
+
+      iframe {
+        height: 250px; /* Smaller video height on small devices */
+      }
     }
   </style>
 </head>
@@ -92,12 +133,10 @@
 
     <div class="course">
       <h2> OOOOO YEAHH</h2>
-      <img src=" https://media.istockphoto.com/id/471463475/photo/facebook-page-of-justin-bieber-on-rgb-laptop-monitor.jpg?s=2048x2048&w=is&k=20&c=tWnVot0cBjXTU4Ib2kj1tpqiY15Pjrbg05BEUzA3JrQ=" alt="Course Image" class="course-image">
+      <img src="https://media.istockphoto.com/id/471463475/photo/facebook-page-of-justin-bieber-on-rgb-laptop-monitor.jpg?s=2048x2048&w=is&k=20&c=tWnVot0cBjXTU4Ib2kj1tpqiY15Pjrbg05BEUzA3JrQ=" alt="Course Image" class="course-image">
       <p> HELLLO KON.</p>
       <button onclick="openVideoModal('https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/DF459A171969933F9946EC33663FC8A0_video_dashinit.mp4?alt=media&token=91a2db7e-e62d-4cb1-9902-7619245a9cdd')">Watch Video</button>
     </div>
-
-  
   </section>
 
   <!-- The Modal -->
