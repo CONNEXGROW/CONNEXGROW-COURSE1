@@ -8,25 +8,24 @@
   <style>
     /* Modal Styles */
     .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
+      display: none;
+      position: fixed;
+      z-index: 1;
       left: 0;
       top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
     }
 
     .modal-content {
       background-color: #fefefe;
-      margin: 5% auto; /* Center the modal */
+      margin: 5% auto;
       padding: 20px;
       border: 1px solid #888;
-      width: 80%; /* Could be more or less, depending on screen size */
-      max-width: 800px; /* Optional: limit the max width */
+      width: 80%;
+      max-width: 800px;
     }
 
     .close {
@@ -43,14 +42,13 @@
       cursor: pointer;
     }
 
-    /* Course Section Styling */
     .course {
       background-color: #fff;
       border: 1px solid #ddd;
       padding: 20px;
       margin: 20px 0;
       border-radius: 10px;
-      text-align: center; /* Center-aligns text */
+      text-align: center;
     }
 
     .course h2 {
@@ -63,45 +61,34 @@
       color: #555;
     }
 
-    /* Single rule for responsive course images */
     .course img {
-      width: 80%; /* Takes full width of the parent container */
-      max-width: 500px; /* Optional: maximum width limit */
-      height: auto; /* Maintain aspect ratio */
-      margin: 20px 0; /* Adds margin around the image */
-      border-radius: 10px; /* Optional: add rounded corners */
-    }
-
-    /* Form Modal Styles */
-    #formModal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-
-    #formModal-content {
-      background-color: #fefefe;
-      margin: 5% auto; /* Center the modal */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%; /* Could be more or less, depending on screen size */
-      max-width: 800px; /* Optional: limit the max width */
+      width: 80%;
+      max-width: 500px;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 10px;
     }
 
     #formModal iframe {
       width: 100%;
-      height: 600px; /* Adjust as needed */
+      height: 600px;
       border: none;
     }
 
-    /* Search Bar Styling */
+    #thankYouModal {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      text-align: center;
+      padding: 100px;
+      z-index: 2;
+    }
+
     #search-bar {
       margin: 20px 0;
       text-align: center;
@@ -143,39 +130,21 @@
 
   <section id="courses">
     <!-- Course Section -->
-    <div class="course">
+    <div class="course" data-form-url="https://docs.google.com/forms/d/e/1FAIpQLSeqplaHtdhigKaCEfTbV59bo0M5oEs7IHtqeazBN1Hd_ejvqQ/viewform?usp=sf_link">
       <h2>Introduction to Cash Flow Management</h2>
       <img src="DALL·E 2024-09-14 18.02.59 - A professional office desk focused on cash flow management. The scene includes a clear and detailed chart or graph titled 'Cash Flow Management' on a .webp" alt="Course Image">
       <p>This course will teach you the basics of cash flow management.</p>
-      <button onclick="openVideoModal('https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/invideo-ai-1080%20Mastering%20Cash%20Flow%20Management%20for%20Your%202024-09-14.mp4?alt=media&token=064aa71c-cfdc-425b-bf65-261f49aca877')">Watch Video</button>
+      <button onclick="openVideoModal(' https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/invideo-ai-1080%20Mastering%20Cash%20Flow%20Management%20for%20Your%202024-09-14.mp4?alt=media&token=064aa71c-cfdc-425b-bf65-261f49aca877', this)">Watch Video</button>
     </div>
-    <div class="course">
+
+    <div class="course" data-form-url="https://docs.google.com/forms/d/e/form2">
       <h2>What is EBI</h2>
-      <img src="https://raw.githubusercontent.com/username/repository/branch/path/to/your-image.jpg" alt="Course Image">
+      <img src="course-image-2.jpg" alt="Course Image">
       <p>This course will teach you the basics of programming.</p>
-      <button onclick="openVideoModal('https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/dheere%20dheere%20se(1080p).mp4?alt=media&token=ac431609-0825-49d7-b16c-07b2c0d18995')">Watch Video</button>
-    </div>
-  
-    <div class="course">
-      <h2>Course 9</h2>
-      <img src="COURSE_IMAGE_URL_HERE" alt="Course Image">
-      <p>Course description here</p>
-      <button onclick="openVideoModal('VIDEO_URL_HERE')">Watch Video</button>
+      <button onclick="openVideoModal('https://firebasestorage.googleapis.com/video2.mp4', this)">Watch Video</button>
     </div>
 
-    <div class="course">
-      <h2>Course 4</h2>
-      <img src="COURSE_IMAGE_URL_HERE" alt="Course Image">
-      <p>Course description here</p>
-      <button onclick="openVideoModal('VIDEO_URL_HERE')">Watch Video</button>
-    </div>
-
-    <div class="course">
-      <h2>Course 3</h2>
-      <img src="COURSE_IMAGE_URL_HERE" alt="Course Image">
-      <p>Course description here</p>
-      <button onclick="openVideoModal('VIDEO_URL_HERE')">Watch Video</button>
-    </div>
+    <!-- Add more courses as needed -->
   </section>
 
   <!-- The Video Modal -->
@@ -198,14 +167,15 @@
   </div>
 
   <!-- The Thank You Modal -->
-  <div id="thankYouModal" style="display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); color: #fff; text-align: center; padding: 100px; z-index: 2;">
+  <div id="thankYouModal">
     <h2>Congratulations! You have finished the course.</h2>
     <button id="applyButton" onclick="showForm()">Apply for Exam</button>
   </div>
 
   <script>
-    // Function to open the video modal
-    function openVideoModal(videoURL) {
+    let currentFormURL = '';
+
+    function openVideoModal(videoURL, buttonElement) {
       var modal = document.getElementById("videoModal");
       var video = document.getElementById("modalVideo");
       var span = document.getElementsByClassName("close")[0];
@@ -229,27 +199,26 @@
 
       video.onended = function() {
         modal.style.display = "none";
+        var course = buttonElement.closest('.course');
+        currentFormURL = course.getAttribute('data-form-url');
         document.getElementById("thankYouModal").style.display = "block";
       };
     }
 
-    // Function to show the form modal
     function showForm() {
-      document.getElementById("thankYouModal").style.display = "none";
       var formModal = document.getElementById("formModal");
       var formFrame = document.getElementById("formFrame");
-
-      formFrame.src = "https://docs.google.com/forms/d/e/1FAIpQLSdeTPxRwu57NaJFV5iPc4qqo53Z2dLwA7UxMoWnGLVyYVrNkg/viewform";
+      
+      formFrame.src = currentFormURL;
       formModal.style.display = "block";
+      document.getElementById("thankYouModal").style.display = "none";
     }
 
-    // Function to close the form modal
     function closeFormModal() {
       var formModal = document.getElementById("formModal");
       formModal.style.display = "none";
     }
 
-    // Function to search courses
     function searchCourses() {
       var input = document.getElementById('search-input').value.toLowerCase();
       var courses = document.getElementsByClassName('course');
