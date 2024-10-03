@@ -246,21 +246,11 @@
       }
     }
   
-<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-  <script src="https://files.bpcontent.cloud/2024/10/03/20/20241003202754-5GPCQOZB.js"></script>
-  
-  <!-- JavaScript to Hide Botpress Branding -->
-  <script>
-    window.addEventListener('message', function(event) {
-      if (event.data === 'webchatReady') {
-        // Once the webchat is fully ready, try hiding the branding element
-        var brandingElement = document.querySelector('.bp-powered-by');
-        if (brandingElement) {
-          brandingElement.style.display = 'none';
-        }
-      }
-    });
-  </script>
+<iframe 
+  src="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://your-server.com/path-to-your-custom-config.json"
+  style="width: 100%; height: 100vh; border: none;">
+</iframe>
+
   
 
 
