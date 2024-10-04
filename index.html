@@ -245,28 +245,8 @@
         }
       }
     }
-  
-<!-- Embed Botpress Chatbot -->
-  <iframe 
-    src="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2024/10/03/20/20241003202754-OCTS7QSR.json" 
-    style="width: 100%; height: 100vh; border: none;" id="botpress-iframe">
-  </iframe>
 
-  <!-- JavaScript to Hide Branding -->
-  <script>
-    // Wait for the iframe to load completely
-    document.getElementById('botpress-iframe').onload = function() {
-      const iframe = document.getElementById('botpress-iframe').contentWindow.document;
-      
-      // Wait a bit to ensure content is loaded within the iframe
-      setTimeout(function() {
-        const brandingElement = iframe.querySelector('.bp-powered-by');
-        if (brandingElement) {
-          brandingElement.style.display = 'none';
-        }
-      }, 3000); // Adjust timing if needed
-    };
-  </script>
+  
 
   
 
