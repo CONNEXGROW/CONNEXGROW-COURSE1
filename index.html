@@ -189,69 +189,73 @@
     let currentFormURL = '';
 
     function openVideoModal(videoURL, buttonElement) {
-      var modal = document.getElementById("videoModal");
-      var video = document.getElementById("modalVideo");
-      var span = document.getElementsByClassName("close")[0];
+      const modal = document.getElementById("videoModal");
+      const video = document.getElementById("modalVideo");
+      const span = document.getElementsByClassName("close")[0];
 
+      // Set video source and display modal
       video.src = videoURL;
       modal.style.display = "block";
 
+      // Close modal when the close button is clicked
       span.onclick = function() {
         modal.style.display = "none";
         video.pause();
-        video.src = "";
-      }
+        video.src = ""; // Clear video source to stop loading
+      };
 
+      // Close modal if user clicks outside the modal content
       window.onclick = function(event) {
         if (event.target == modal) {
           modal.style.display = "none";
           video.pause();
-          video.src = "";
+          video.src = ""; // Clear video source to stop loading
         }
       };
 
+      // Trigger form modal when video ends
       video.onended = function() {
         modal.style.display = "none";
-        var course = buttonElement.closest('.course');
+        video.pause(); // Ensure video is paused
+
+        // Get associated form URL and show thank you modal
+        const course = buttonElement.closest('.course');
         currentFormURL = course.getAttribute('data-form-url');
         document.getElementById("thankYouModal").style.display = "block";
       };
     }
 
     function showForm() {
-      var formModal = document.getElementById("formModal");
-      var formFrame = document.getElementById("formFrame");
-      
+      const formModal = document.getElementById("formModal");
+      const formFrame = document.getElementById("formFrame");
+
+      // Load the correct form in the iframe
       formFrame.src = currentFormURL;
       formModal.style.display = "block";
+
+      // Hide thank you modal
       document.getElementById("thankYouModal").style.display = "none";
     }
 
     function closeFormModal() {
-      var formModal = document.getElementById("formModal");
+      const formModal = document.getElementById("formModal");
       formModal.style.display = "none";
     }
 
     function searchCourses() {
-      var input = document.getElementById('search-input').value.toLowerCase();
-      var courses = document.getElementsByClassName('course');
+      const input = document.getElementById('search-input').value.toLowerCase();
+      const courses = document.getElementsByClassName('course');
 
-      for (var i = 0; i < courses.length; i++) {
-        var courseTitle = courses[i].getElementsByTagName('h2')[0].textContent.toLowerCase();
-        if (courseTitle.indexOf(input) > -1) {
-          courses[i].style.display = "";
+      // Search through course titles
+      for (let i = 0; i < courses.length; i++) {
+        const courseTitle = courses[i].getElementsByTagName('h2')[0].innerText.toLowerCase();
+        if (courseTitle.includes(input)) {
+          courses[i].style.display = "block";
         } else {
           courses[i].style.display = "none";
         }
       }
     }
-
-  
-
-  
-
-
-  
-
+  </script>
 </body>
 </html>
