@@ -3,76 +3,222 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Course Website</title>
-  <link rel="stylesheet" href="style.css">
+  <title>ConnexGrow Free Courses</title>
   <style>
-    /* Modal Styles */
+    :root {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --primary-color: #bb86fc;
+      --secondary-color: #03dac6;
+      --accent-color: #cf6679;
+      --card-bg: #1e1e1e;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      color: var(--bg-color);
+      text-align: center;
+      padding: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        var(--primary-color),
+        var(--secondary-color)
+      );
+      transform: rotate(-10deg);
+      z-index: 0;
+    }
+
+    #search-bar {
+      margin: 2rem auto;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    #search-input {
+      padding: 0.75rem;
+      width: 70%;
+      border: none;
+      border-radius: 25px 0 0 25px;
+      font-size: 1rem;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      outline: none;
+    }
+
+    #search-button {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--secondary-color);
+      color: var(--bg-color);
+      border: none;
+      border-radius: 0 25px 25px 0;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #search-button:hover {
+      background-color: var(--accent-color);
+    }
+
+    #courses {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .course {
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      padding: 1.5rem;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .course:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .course h2 {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-top: 0;
+    }
+
+    .course img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+
+    .course p {
+      font-size: 1rem;
+      color: var(--text-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .course button {
+      background-color: var(--secondary-color);
+      color: var(--bg-color);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .course button:hover {
+      background-color: var(--accent-color);
+      transform: scale(1.05);
+    }
+
     .modal {
       display: none;
       position: fixed;
-      z-index: 1;
+      z-index: 1000;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: #000000;
+      background-color: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .modal-content {
-      background-color: #fefefe;
+      background-color: var(--card-bg);
       margin: 5% auto;
-      padding: 20px;
-      border: 1px solid #888;
+      padding: 2rem;
+      border-radius: 15px;
       width: 80%;
       max-width: 800px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal.show {
+      opacity: 1;
+    }
+
+    .modal.show .modal-content {
+      transform: scale(1);
     }
 
     .close {
-      color: #aaa;
+      color: var(--text-color);
       float: right;
-      font-size: 28px;
+      font-size: 2rem;
       font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
       cursor: pointer;
+      transition: color 0.3s ease;
     }
 
-    .course {
-      background-color: #F0F7FF;
-      border: 1px solid #ddd;
-      padding: 20px;
-      margin: 20px 0;
+    .close:hover {
+      color: var(--accent-color);
+    }
+
+    #modalVideo {
+      width: 100%;
       border-radius: 10px;
-      text-align: center;
     }
 
-    .course h2 {
-      font-size: 1.5em;
-      color: #007bff;
+    #rotateButton {
+      margin-top: 1rem;
+      background-color: var(--primary-color);
+      color: var(--bg-color);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    .course p {
-      font-size: 1em;
-      color: #555;
-    }
-
-    .course img {
-      width: 80%;
-      max-width: 500px;
-      height: auto;
-      margin: 20px 0;
-      border-radius: 10px;
+    #rotateButton:hover {
+      background-color: var(--accent-color);
     }
 
     #formModal iframe {
       width: 100%;
       height: 600px;
       border: none;
+      border-radius: 10px;
     }
 
     #thankYouModal {
@@ -82,38 +228,52 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #fff;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: var(--text-color);
       text-align: center;
       padding: 100px;
-      z-index: 2;
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    #search-bar {
-      margin: 20px 0;
-      text-align: center;
+    #thankYouModal.show {
+      opacity: 1;
     }
 
-    #search-input {
-      padding: 10px;
-      width: 300px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-
-    #search-button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
+    #applyButton {
+      background-color: var(--secondary-color);
+      color: var(--bg-color);
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-size: 1rem;
       cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
-    #search-button:hover {
-      background-color: #0056b3;
+    #applyButton:hover {
+      background-color: var(--accent-color);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      #search-input {
+        width: 60%;
+      }
+
+      .course {
+        width: 100%;
+      }
+
+      .modal-content {
+        width: 95%;
+        padding: 1rem;
+      }
     }
   </style>
 </head>
@@ -122,140 +282,160 @@
     <h1>CONNEXGROW FREE COURSES</h1>
   </header>
 
-  <!-- Search Bar -->
   <div id="search-bar">
     <input type="text" id="search-input" placeholder="Search for a course...">
-    <button id="search-button" onclick="searchCourses()">Search</button>
+    <button id="search-button">Search</button>
   </div>
 
   <section id="courses">
-    <!-- Course Section -->
     <div class="course" data-form-url="https://connexg.github.io/Introduction-to-Cash-Flow-Management/">
       <h2>Introduction to Cash Flow Management</h2>
-      <img src="DALL·E 2024-09-14 18.02.59 - A professional office desk focused on cash flow management. The scene includes a clear and detailed chart or graph titled 'Cash Flow Management' on a .webp" alt="Course Image">
+      <img src="https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/DALL%C2%B7E%202024-09-14%2018.02.59%20-%20A%20professional%20office%20desk%20focused%20on%20cash%20flow%20management.%20The%20scene%20includes%20a%20clear%20and%20detailed%20chart%20or%20graph%20titled%20'Cash%20Flow%20Management'%20on%20a%20.webp?alt=media&token=064aa71c-cfdc-425b-bf65-261f49aca877" alt="Cash Flow Management Course">
       <p>This course will teach you the basics of cash flow management.</p>
-      <button onclick="openVideoModal('https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/invideo-ai-1080%20Mastering%20Cash%20Flow%20Management%20for%20Your%202024-09-14.mp4?alt=media&token=064aa71c-cfdc-425b-bf65-261f49aca877', this)">Watch Video</button>
+      <button class="watch-video" data-video-url="https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/invideo-ai-1080%20Mastering%20Cash%20Flow%20Management%20for%20Your%202024-09-14.mp4?alt=media&token=064aa71c-cfdc-425b-bf65-261f49aca877">Watch Video</button>
     </div>
 
     <div class="course" data-form-url="https://docs.google.com/forms/d/e/form2">
       <h2>COMING SOON...</h2>
-      <img src="Gemini_Generated_Image_49han349han349ha.jpeg" alt="Course Image">
+      <img src="https://firebasestorage.googleapis.com/v0/b/connex-832db.appspot.com/o/Gemini_Generated_Image_49han349han349ha.jpeg?alt=media&token=064aa71c-cfdc-425b-bf65-261f49aca877" alt="Coming Soon">
       <p>MORE FREE COURSES ARE COMING SOON...</p>
-      <button onclick="openVideoModal('https://connexgrow.github.io/CONNEX/', this)">Watch Video</button>
+      <button class="watch-video" data-video-url="https://connexgrow.github.io/CONNEX/">Watch Video</button>
     </div>
-
-    <!-- Add more courses as needed -->
   </section>
 
-  <!-- The Video Modal -->
   <div id="videoModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <video id="modalVideo" controls controlsList="nodownload" width="100%" height="450">
+      <video id="modalVideo" controls controlsList="nodownload">
         <source src="" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <!-- Rotate Button -->
-      <button id="rotateButton" onclick="rotateVideo()">Rotate Video</button>
+      <button id="rotateButton">Rotate Video</button>
     </div>
   </div>
   
-  <!-- The Form Modal -->
   <div id="formModal" class="modal">
-    <div id="formModal-content">
-      <span class="close" onclick="closeFormModal()">&times;</span>
+    <div class="modal-content">
+      <span class="close">&times;</span>
       <iframe id="formFrame" src="" allow="autoplay; encrypted-media"></iframe>
     </div>
   </div>
 
-  <!-- The Thank You Modal -->
   <div id="thankYouModal">
-    <h2>Congratulations! You have finished the course. 'Apply for Exam'.</h2>
-    <button id="applyButton" onclick="showForm()">Apply for Exam</button>
+    <h2>Congratulations! You have finished the course.</h2>
+    <button id="applyButton">Apply for Exam</button>
   </div>
 
   <script>
     let currentRotation = 0;
+    let currentFormURL = '';
 
     function rotateVideo() {
-      currentRotation += 90; // Rotate 90 degrees on each click
+      currentRotation += 90;
       if (currentRotation === 360) {
-        currentRotation = 0; // Reset rotation after a full circle
+        currentRotation = 0;
       }
       const video = document.getElementById("modalVideo");
       video.style.transform = `rotate(${currentRotation}deg)`;
     }
 
-    let currentFormURL = '';
-
     function openVideoModal(videoURL, buttonElement) {
       const modal = document.getElementById("videoModal");
       const video = document.getElementById("modalVideo");
-      const span = document.getElementsByClassName("close")[0];
+      const span = modal.querySelector(".close");
 
-      // Set video source and display modal
       video.src = videoURL;
       modal.style.display = "block";
+      setTimeout(() => modal.classList.add('show'), 10);
 
-      // Close modal when the close button is clicked
-      span.onclick = function() {
-        modal.style.display = "none";
-        video.pause();
-        video.src = ""; // Clear video source to stop loading
-      };
-
-      // Close modal if user clicks outside the modal content
-      window.onclick = function(event) {
+      span.onclick = closeVideoModal;
+      window.onclick = (event) => {
         if (event.target == modal) {
-          modal.style.display = "none";
-          video.pause();
-          video.src = ""; // Clear video source to stop loading
+          closeVideoModal();
         }
       };
 
-      // Trigger form modal when video ends
-      video.onended = function() {
-        modal.style.display = "none";
-        video.pause(); // Ensure video is paused
-
-        // Get associated form URL and show thank you modal
+      video.onended = () => {
+        closeVideoModal();
         const course = buttonElement.closest('.course');
         currentFormURL = course.getAttribute('data-form-url');
-        document.getElementById("thankYouModal").style.display = "block";
+        openThankYouModal();
       };
+    }
+
+    function closeVideoModal() {
+      const modal = document.getElementById("videoModal");
+      const video = document.getElementById("modalVideo");
+      modal.classList.remove('show');
+      setTimeout(() => {
+        modal.style.display = "none";
+        video.pause();
+        video.src = "";
+      }, 300);
+    }
+
+    function openThankYouModal() {
+      const modal = document.getElementById("thankYouModal");
+      modal.style.display = "block";
+      setTimeout(() => modal.classList.add('show'), 10);
     }
 
     function showForm() {
       const formModal = document.getElementById("formModal");
       const formFrame = document.getElementById("formFrame");
+      const thankYouModal = document.getElementById("thankYouModal");
 
-      // Load the correct form in the iframe
       formFrame.src = currentFormURL;
       formModal.style.display = "block";
+      setTimeout(() => formModal.classList.add('show'), 10);
 
-      // Hide thank you modal
-      document.getElementById("thankYouModal").style.display = "none";
+      thankYouModal.classList.remove('show');
+      setTimeout(() => {
+        thankYouModal.style.display = "none";
+      }, 300);
     }
 
     function closeFormModal() {
       const formModal = document.getElementById("formModal");
-      formModal.style.display = "none";
+      formModal.classList.remove('show');
+      setTimeout(() => {
+        formModal.style.display = "none";
+      }, 300);
     }
 
     function searchCourses() {
       const input = document.getElementById('search-input').value.toLowerCase();
       const courses = document.getElementsByClassName('course');
 
-      // Search through course titles
-      for (let i = 0; i < courses.length; i++) {
-        const courseTitle = courses[i].getElementsByTagName('h2')[0].innerText.toLowerCase();
+      for (let course of courses) {
+        const courseTitle = course.getElementsByTagName('h2')[0].innerText.toLowerCase();
         if (courseTitle.includes(input)) {
-          courses[i].style.display = "block";
+          course.style.display = "block";
         } else {
-          courses[i].style.display = "none";
+          course.style.display = "none";
         }
       }
     }
+
+    // Event Listeners
+    document.getElementById('search-button').addEventListener('click', searchCourses);
+    document.getElementById('rotateButton').addEventListener('click', rotateVideo);
+    document.getElementById('applyButton').addEventListener('click', showForm);
+    document.querySelectorAll('.watch-video').forEach(button => {
+      button.addEventListener('click', function() {
+        openVideoModal(this.getAttribute('data-video-url'), this);
+      });
+    });
+    document.querySelectorAll('.modal .close').forEach(closeBtn => {
+      closeBtn.addEventListener('click', function() {
+        if (this.closest('#videoModal')) {
+          closeVideoModal();
+        } else if (this.closest('#formModal')) {
+          closeFormModal();
+        }
+      });
+    });
   </script>
 </body>
 </html>
+
